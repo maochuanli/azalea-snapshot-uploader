@@ -17,6 +17,5 @@ COPY main_work.py /usr/local/bin/
 RUN chmod +x /usr/local/bin/main_work.py
 
 EXPOSE 30333 9933 9944
-VOLUME ["/data"]
 
 ENTRYPOINT ["/usr/local/bin/main_work.py"]
