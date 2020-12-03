@@ -38,9 +38,14 @@ def create_index_html():
             file_name = line.split()[-1]
             file_list_content += '<li><a href="{}"> {}</a></li>'.format(file_name)
     index_file_content = template.format(file_list_content)
+
     with open('/root/index.html', 'w') as f:
         f.write(index_file_content)
 
+    eprint('AWS s3 copy the index.html file......')
+    eprint('AWS s3 copy the index.html file......')
+    eprint('AWS s3 copy the index.html file......')
+    eprint('AWS s3 copy the index.html file......')
     rc, out = run_cmd('aws s3 cp /root/index.html s3://cennznet-snapshots.centralityapp.com/')
 
 def take_snapshot():
