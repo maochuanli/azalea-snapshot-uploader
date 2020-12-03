@@ -29,6 +29,7 @@ def create_index_html():
     </ul>
     </body></html>
     '''
+    eprint('Creating the index.html file......')
     file_list_content = ''
     rc, out = run_cmd('aws s3 ls s3://cennznet-snapshots.centralityapp.com/')
     lines = out.split('\n')
@@ -37,10 +38,10 @@ def create_index_html():
             file_name = line.split()[-1]
             file_list_content += '<li><a href="{}"> {}</a></li>'.format(file_name)
     index_file_content = template.format(file_list_content)
-    with open('/mnt/cennznet/index.html', 'w') as f:
+    with open('/root/index.html', 'w') as f:
         f.write(index_file_content)
 
-    rc, out = run_cmd('aws s3 cp /mnt/cennznet/index.html s3://cennznet-snapshots.centralityapp.com/')
+    rc, out = run_cmd('aws s3 cp /root/index.html s3://cennznet-snapshots.centralityapp.com/')
 
 def take_snapshot():
     global PROCESS
