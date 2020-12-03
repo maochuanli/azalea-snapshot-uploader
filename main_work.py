@@ -30,6 +30,10 @@ def create_index_html():
     </body></html>
     '''
     eprint('Creating the index.html file......')
+    eprint('Creating the index.html file......')
+    eprint('Creating the index.html file......')
+    eprint('Creating the index.html file......')
+
     file_list_content = ''
     rc, out = run_cmd('aws s3 ls s3://cennznet-snapshots.centralityapp.com/')
     lines = out.split('\n')
@@ -38,6 +42,11 @@ def create_index_html():
             file_name = line.split()[-1]
             file_list_content += '<li><a href="{}"> {}</a></li>'.format(file_name)
 
+
+    eprint('Creating the index.html file 22222......')
+    eprint('Creating the index.html file 22222......')
+    eprint('Creating the index.html file 22222......')
+    eprint('Creating the index.html file 22222......')
     index_file_content = template.format(file_list_content)
     eprint('Creating the index.html file - /root/index.html ......')
     with open('/root/index.html', 'w') as f:
