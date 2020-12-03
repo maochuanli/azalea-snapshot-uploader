@@ -30,10 +30,6 @@ def create_index_html():
     </body></html>
     '''
     eprint('Creating the index.html file......')
-    eprint('Creating the index.html file......')
-    eprint('Creating the index.html file......')
-    eprint('Creating the index.html file......')
-    time.sleep(10)
     file_list_content = ''
     rc, out = run_cmd('aws s3 ls s3://cennznet-snapshots.centralityapp.com/')
     lines = out.split('\n')
@@ -42,26 +38,12 @@ def create_index_html():
             file_name = line.split()[-1]
             file_list_content += '<li><a href="{0}"> {0}</a></li>'.format(file_name)
 
-
-    eprint('Creating the index.html file 22222......')
-    eprint('Creating the index.html file 22222......')
-    eprint('Creating the index.html file 22222......')
-    eprint('Creating the index.html file 22222......')
-    time.sleep(10)
-
     index_file_content = template.format(file_list_content)
-    eprint('Creating the index.html file - /root/index.html ......')
-    time.sleep(10)
     with open('/root/index.html', 'w') as f:
         f.write(index_file_content)
 
-    eprint('AWS s3 copy the index.html file......')
-    eprint('AWS s3 copy the index.html file......')
-    eprint('AWS s3 copy the index.html file......')
-    time.sleep(10)
-
-    rc, out = run_cmd('aws s3 cp /root/index.html s3://cennznet-snapshots.centralityapp.com/')
     eprint('AWS s3 copy the index.html file...... SLeep 60s')
+    rc, out = run_cmd('aws s3 cp /root/index.html s3://cennznet-snapshots.centralityapp.com/')
     time.sleep(60)
 
 def take_snapshot():
@@ -123,7 +105,7 @@ def is_time_for_snapshot(now_datetime):
 # every 5 minutes
 def is_time_for_snapshot_5min(now_datetime):
     time_tuple  = now_datetime.timetuple()
-    if time_tuple.tm_min%5 == 0 and time_tuple.tm_sec >=0 and time_tuple.tm_sec <=6:
+    if time_tuple.tm_min%60 == 0 and time_tuple.tm_sec >=0 and time_tuple.tm_sec <=6:
         return True
     else:
         return False
