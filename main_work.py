@@ -39,7 +39,7 @@ def create_index_html():
             file_list_content += '<li><a href="{}"> {}</a></li>'.format(file_name)
 
     index_file_content = template.format(file_list_content)
-
+    eprint('Creating the index.html file - /root/index.html ......')
     with open('/root/index.html', 'w') as f:
         f.write(index_file_content)
 
@@ -68,7 +68,11 @@ def take_snapshot():
     eprint('s3 cp exitcode: ', rc)
 
     eprint('snapshot done!!!!!!!')
-    create_index_html()
+    try:
+        create_index_html()
+    except Exception:
+        eprint(traceback.format_exc())
+    
     eprint('index.html file done!!!!!!!')
 
 def restart_node():
