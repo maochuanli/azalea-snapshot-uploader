@@ -37,6 +37,7 @@ def create_index_html():
         if len(line) > 0 and line.endswith('chains.tar.gz'):
             file_name = line.split()[-1]
             file_list_content += '<li><a href="{}"> {}</a></li>'.format(file_name)
+
     index_file_content = template.format(file_list_content)
 
     with open('/root/index.html', 'w') as f:
@@ -45,8 +46,10 @@ def create_index_html():
     eprint('AWS s3 copy the index.html file......')
     eprint('AWS s3 copy the index.html file......')
     eprint('AWS s3 copy the index.html file......')
-    eprint('AWS s3 copy the index.html file......')
+    
     rc, out = run_cmd('aws s3 cp /root/index.html s3://cennznet-snapshots.centralityapp.com/')
+    eprint('AWS s3 copy the index.html file...... SLeep 60s')
+    time.sleep(60)
 
 def take_snapshot():
     global PROCESS
