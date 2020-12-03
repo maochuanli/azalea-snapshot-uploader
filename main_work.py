@@ -1,4 +1,4 @@
-import sys, time, datetime
+import sys, time, datetime, trace, traceback
 import subprocess
 import shlex
 import base64
@@ -33,7 +33,7 @@ def create_index_html():
     eprint('Creating the index.html file......')
     eprint('Creating the index.html file......')
     eprint('Creating the index.html file......')
-
+    time.sleep(10)
     file_list_content = ''
     rc, out = run_cmd('aws s3 ls s3://cennznet-snapshots.centralityapp.com/')
     lines = out.split('\n')
@@ -47,14 +47,18 @@ def create_index_html():
     eprint('Creating the index.html file 22222......')
     eprint('Creating the index.html file 22222......')
     eprint('Creating the index.html file 22222......')
+    time.sleep(10)
+
     index_file_content = template.format(file_list_content)
     eprint('Creating the index.html file - /root/index.html ......')
+    time.sleep(10)
     with open('/root/index.html', 'w') as f:
         f.write(index_file_content)
 
     eprint('AWS s3 copy the index.html file......')
     eprint('AWS s3 copy the index.html file......')
     eprint('AWS s3 copy the index.html file......')
+    time.sleep(10)
     
     rc, out = run_cmd('aws s3 cp /root/index.html s3://cennznet-snapshots.centralityapp.com/')
     eprint('AWS s3 copy the index.html file...... SLeep 60s')
